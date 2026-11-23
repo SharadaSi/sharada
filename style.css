@@ -1,0 +1,825 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+
+:root{
+    --l-golden: #f4eedc;
+    --violet: rgba(58,29,61,1);
+    --orange: rgba(195,96,39,1);
+    --yellow: rgba(226,172,63,1);
+    --d-overlay: #282828;
+    --l-overlay: #f5f5f5;
+    --bg-body: #f5f5f6;
+    --bg-footer: #141414;
+    --black-text: #282828;
+    --grey-text: #585858;
+    --light-text: #fcfbf1;
+    --footer-text: #858484;
+}
+
+
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+    font-family: "Exo 2", sans-serif;
+    font-weight: 200;
+    background-color: var(--bg-body);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3{
+    font-family: "Cairo", sans-serif;
+    font-weight: 700;
+}
+
+h2, h3{
+    text-transform: uppercase;
+}
+
+h2{
+    text-align: center;
+}
+
+
+header{
+    font-family: "Cairo", sans-serif;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 20%;
+    display: flex;
+    justify-content: space-between;
+    
+    align-items: center;
+    background: var(--bg-body);
+    position: relative;
+}
+
+.logo{
+    width: 15em;
+}
+
+.logo-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    place-content: center;
+    padding-left: 1em;
+}
+
+.logo-container > h2 {
+    font-weight: 400;
+    
+}
+
+.logo-text{
+    font-size: 1rem;
+    align-self: center;
+}
+
+.dropdown-menu{
+    list-style-type: none;
+    text-align: center;
+    width: 100%;
+    
+}
+
+
+.dropdown-menu li{
+    text-transform: uppercase;
+    clip-path: ellipse(49% 30% at 50% 50%);
+    transition: clip-path .4s ease-in-out;
+}
+
+.dropdown-menu li:nth-child(1){
+    white-space: nowrap;
+}
+
+.dropdown-menu li a {
+    color: #282828;
+}
+
+.dropdown-menu-container{
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-body);
+
+    display: none;
+}
+
+.dropdown-menu li:hover, .dropdown-menu li:active{
+    background-color: var(--l-golden);
+    /* clip-path: polygon(0 50%, 59% 1%, 100% 49%, 42% 100%, 0 50%); */
+    clip-path: ellipse(31% 42% at 50% 50%);
+    transition: background-color .4s ease-in-out;
+}
+
+.nav-toggle:checked ~ .dropdown-menu-container{
+    display: block;
+    z-index: 999;
+    background-color: rgba(245,245,246,);
+    margin: 0;
+    padding: 0;
+}
+
+.nav-toggle-label{
+    position: absolute;
+    top: 4em;
+    right: 2em;
+    cursor: pointer;
+}
+
+.nav-toggle-label span, 
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+    display: block;
+    background-color: var(--black-text);
+    width: 2.5em;
+    height: 5px;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::before{
+    top: 9px;
+    
+}
+
+.nav-toggle-label span::after{
+    bottom: 9px;
+}
+
+.nav-toggle{
+    display: none;
+}
+
+li{
+    margin: 0 .5em;
+}
+
+/*-----HERO SLIDER-----*/
+
+.hero-container{
+    width: 100%;
+    height: 100%;
+}
+
+.hero{
+    width: 100%;
+    min-height: 80vh;
+    background-image: url("images/slider1-compressed.jpg");
+    background-position: 35% 70% ;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    isolation: isolate;
+}
+
+@media screen 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    
+    .hero{
+        background-attachment: scroll;
+    }
+}
+
+.hero::after{
+    content: '';
+    position: absolute;
+    background-color: var(--d-overlay);
+    z-index: -1;
+    inset: 0;
+    opacity: .5;
+}
+
+.hero-text{
+    text-align: center;
+    vertical-align: center;
+    padding-top: 15%;
+    color: var(--light-text);
+}
+
+.hero-text h1{
+    font-size: 2rem;
+}
+
+/*----- SERVICES CAROUSEL -----*/
+
+.homepage-services-carousel{
+    width: 100%;
+    padding: 6em 0 2em;
+    background: var(--bg-body);
+    overflow-x: hidden; 
+}
+
+
+.homepage-services-carousel > h2{
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+
+.services-carousel-container{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 80%;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left:   1rem;
+    scroll-padding-right:  1rem;
+}
+
+.snap-inline{
+    scroll-snap-type: mandatory;
+    scroll-snap-align: start;
+    scroll-behavior: smooth;
+}
+
+.card-carousel-dots{
+    text-align: center;
+}
+
+.card-carousel-dots > label{
+    display: none;
+}
+
+/*----- SERVICE CARD -----*/
+
+
+.card-service {
+    scroll-snap-align: start;
+    background: var(--l-golden);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    
+}
+
+.card-service > a{
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.card-service a > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.img1{
+    object-position: 50% 10%;
+}
+
+.img2{
+    object-position: 50% 99%;
+}
+
+
+.card-service-content{
+   padding: 1rem;
+    flex: 1 0 auto;
+    text-align: center;
+}
+
+.card-service-content h3 {
+  font-size: 1.125rem;
+  margin-bottom: .5rem;
+}
+
+.card-service-content p {
+  font-size: .9rem;
+  line-height: 1.4;
+  color: var(--grey-text);
+}
+
+.card-button{
+    all: unset;               
+    display: inline-block; 
+    cursor: pointer;          
+    font: inherit;            
+    color: inherit; 
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1em 2em;
+    background: linear-gradient(to right, var(--yellow), var(--orange));
+    border-radius: 10px;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+}
+
+.card-button > a{
+    color: #fff; 
+}
+
+.card-button:hover,
+.card-button:active{
+    background: linear-gradient(to left, var(--yellow), var(--orange));
+    opacity: .5;
+}
+
+.card-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: 1.5rem;
+}
+
+input[type="radio"]{
+   appearance: none;
+    width: .75rem;
+    height: .75rem;
+    border: 1px solid rgba(40,40,40,.4);
+    border-radius: 50%;
+    cursor: pointer; 
+}
+
+.card-carousel-dots input[type="radio"]:checked {
+  background: var(--yellow);
+}
+
+/*-----JAK NÁM JSOU MASÁŽE PROSPĚŠNÉ?-----*/
+
+.compelling-section{
+    padding-top: 2em;
+    padding-bottom: 4em;
+}
+
+.homepage-article{
+    width: 90%;
+    margin: 1em auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.homepage-article > h2{
+    padding-top: 3em;
+    padding-bottom: 1em;
+}
+
+.compelling-frame{
+    border-left: 1px solid var(--black-text);
+    padding: 1em;
+}
+
+.compelling-frame > p{
+    border-left: 1px solid var(--black-text);
+    padding: .5em;
+}
+
+.top-line{
+    width: 30%;
+    margin: 1em 0;
+}
+
+.middle-line{
+    width: 40%;
+    margin: 1em auto;
+    color: var(--black-text);
+}
+
+.bottom-line{
+    width: 50%;
+    margin: 1em 0;
+}
+
+/*-----VOUCHER-----*/
+
+.homepage-voucher{
+    background-image: url("images/budha-mobile-compressed.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    aspect-ratio : 16/9;
+    position: relative;
+    isolation: isolate;
+}
+
+.homepage-voucher::after{
+    content: "";
+    position: absolute;
+    background-color: var(--d-overlay);
+    z-index: -1;
+    inset: 0;
+    opacity: 0.5;
+}
+
+.voucher-text{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1em;
+    padding-left: 1em;
+
+}
+
+.voucher-text > h2{
+    padding-top: 1.5em;
+    color: var(--bg-body);
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 1.3rem;
+    
+}
+
+.voucher-text > p{
+
+    color: var(--light-text);
+    
+}
+
+.regular-button{
+    all: unset;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 1.3rem 2rem;
+    background: linear-gradient(to right, #5c5e64, #595d3d );
+    border-radius: 10px;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+    align-self: start;
+    margin-bottom: 1em;
+}
+
+.regular-button > a{
+    color: #f5f5f6;
+}
+.regular-button:hover,
+.regular-button:active{
+    background: linear-gradient(to left, #5c5e64,#595d3d);
+    opacity: .5;
+}
+
+
+/*-----REFERENCE-----*/
+
+.homepage-reference{
+    background-color: var(--l-golden);
+    height: 100%;
+    padding-bottom: 3em;
+}
+
+.homepage-reference > h2{
+    padding-top: 3em;
+    padding-bottom: 1em;
+}
+
+.cards-carousel-container{
+    width: 100%;
+}
+
+.card-reference{
+    width: 95%; 
+    margin: 0em auto;
+    margin-bottom: 1em;
+    background-color: var(--bg-body);
+    display: flex;
+    justify-content: start;
+    position: relative;
+    padding: 2em;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.round-client-photo{
+    width: 7em;
+    clip-path: circle(50% at 50% 50%);
+    object-fit: cover;
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    border: 2px solid var(--violet);
+    border-radius: 50%;
+    
+}
+
+.reference-card-text{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.reference-card-text > h3{
+    margin-top: -1em;
+}
+
+.reference-card-text > p{
+    margin-bottom: .5em;
+}
+
+.reference{
+    background: linear-gradient(rgba(201,95,17,0.5) 30%, rgba(226,172,63,0.5));
+    border-radius: 0 30% 0 30% / 0 20% 0% 20%;
+    background-clip: border-box;
+    padding: 1em 1.5em;
+    width: 80%;
+    text-align: left;
+    text-indent: 1em;
+    text-align-last: center;
+
+}
+
+.quote1, .quote2, .quote3{
+    position: absolute;
+    fill: #282828;
+}
+
+.quote1{
+    right: 6%;
+    bottom: 1%;
+}
+
+.quote2{
+    right: 6%;
+    bottom: 1%;
+}
+
+.quote3{
+    right: 6%;
+    bottom: 1%;
+}
+
+/*----- FOOTER -----*/
+
+footer{
+    background-color: var(--bg-footer);
+    color: var(--footer-text);
+    height: fit-content;
+}
+
+.br-line::before{
+    content: "";
+    display: block;
+    border-top: 2px solid var(--light-text);
+    border-radius: 3px;
+    width: 3em;
+    margin: .4em 0;
+}
+
+.footer-content-grid{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: .5em;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1em 0;
+}
+footer h4{
+    text-transform: uppercase;
+    color: var(--light-text);
+}
+
+.footer-contact > address, a{
+    font-style: normal;
+    color: var(--footer-text);
+}
+
+.footer-social-menu{
+    margin: 0 auto;
+    height: 100%;
+    padding-top: 20%;
+    width: 40%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+footer svg{
+    fill: var(--footer-text);
+}
+
+.footer-nav{
+    text-transform: uppercase;
+}
+
+.footer-nav > a{
+    display: block;
+}
+
+.footer-copyright{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 1em;
+}
+    
+
+
+@media screen and (min-width: 35.5em){
+    
+    .services-carousel-container{
+        grid-auto-columns: 100%;
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    .card-service-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .voucher-text{
+        width: 45%;
+        margin-left: 10%;
+    }
+
+    .round-client-photo{
+        width: 8em;
+    }
+
+    .reference{
+        width: 85%;
+    }
+}
+
+@media screen and (min-width: 48em){
+
+    .services-carousel-container{
+        grid-auto-columns: 48%;
+        gap: 2.5rem;
+    }
+
+     .card-service > a {
+    aspect-ratio: 4/3;
+  }
+
+    /*---VOUCHER---*/
+
+    .regular-button{
+        flex-basis: auto;
+    }
+
+
+    /*---REFERENCE--*/
+
+    .card-reference{
+        width: 80%;
+    }
+
+    .quote1, .quote2, .quote3{
+        bottom: 4%;
+    }
+
+    /* FOOTER*/
+
+    .footer-social-menu{
+        padding-top: 4em;
+    }
+}
+
+@media screen and (min-width: 64em){
+
+    header{
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+
+    }
+
+    .hero{
+        background-image: url(images/slider1-compressed.jpg);
+    }
+
+    .logo-container{
+        padding-left: unset;
+    }
+
+    .nav-toggle-label{
+        display: none;
+    }
+
+    .dropdown-menu-container{
+        all: unset;
+
+        z-index: 999;
+    }
+
+    .dropdown-menu{
+        display: flex;
+        justify-content: space-evenly;
+        z-index: 999;
+    }
+
+    .dropdown-menu li{
+        clip-path: unset;
+        width: 100%;
+        padding: 1em;
+    }
+
+    .dropdown-menu li:hover,
+    .dropdown-menu li:active{
+        clip-path: unset;
+        clip-path: ellipse(49% 24% at 50% 50%);
+        transition: background-color .3s ease-in-out;
+    }
+
+    /*---OBLÍBENÉ MASÁŽE--*/
+
+    .services-carousel-container{
+        grid-auto-columns: 32%;
+        gap: 3rem;
+        padding: 0;
+        overflow-x: visible;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .homepage-article{
+        width: 80%;
+    }
+
+    .voucher-text{
+        height: 100%;
+        padding-top: 15%;
+    }
+
+    .voucher-text h2{
+        font-size: 1.6rem
+    }
+
+    .voucher-text > .regular-button{
+        padding: 1.3rem 2rem;
+        margin-top: 10%;
+        font-size: 1.2rem;
+    }
+
+    .cards-carousel-container{
+        display: flex;
+        gap: 1em;
+        padding: 1em;
+    }
+
+    .round-client-photo{
+        width: 7em;
+    }
+
+    .quote1{
+        right: 9%;
+        bottom: 2%;
+    }
+
+    .quote2{
+        right: 9%;
+        bottom: 40%;
+    }
+
+    .quote3{
+        right: 9%;
+        bottom: 13%;
+    }
+
+}
+
+@media screen and (min-width: 80em){
+
+    .hero-text h1{
+        font-size: 2.4rem;
+        text-transform: uppercase;
+    }
+
+    .hero-text p{
+        font-size: 1.2rem;
+    }
+    
+    .services-carousel-container{
+       grid-auto-columns: 28%;
+       gap: 4rem;
+    }
+
+    .card-carousel-dots{
+        display: none;
+    }
+
+    .card-service > a{
+        width: 105%;
+    }
+
+    .cards-carousel-container{
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .footer-content-grid{
+        width: 80%;
+    }
+
+}
